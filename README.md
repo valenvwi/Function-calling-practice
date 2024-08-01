@@ -21,9 +21,7 @@ This is a simple app mainly to test out function calling. The user can choose wh
 
 ## Features
 
-- Select cuisine type
-- Choose dietary preferences
-- Get a food suggestion with a recipe and preparation time
+- Select cuisine type and dietary preferences, and get a food suggestion with a recipe and preparation time
 
 ## Getting Started
 
