@@ -1,0 +1,17 @@
+services:
+  frontend:
+    container_name: function-calling-frontend
+    image: function-calling-frontend
+    build: ./frontend
+    ports:
+      - 3000:3000
+
+  backend:
+    container_name: function-calling-backend
+    image: function-calling-backend
+    build: ./backend
+    env_file:
+      - path: ./backend/.env
+        required: true
+    ports:
+      - 8000:8000
