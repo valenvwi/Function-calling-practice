@@ -25,6 +25,16 @@ This is a simple app mainly to test out function calling. The user can choose wh
 
 ## Getting Started
 
+This project can be run using Docker. You need to place your OpenAI key in the backend/.env file. Follow the instructions below to build and run the containers:
+
+  ```bash
+    docker compose build
+    docker compose up
+  ```
+
+
+If you don't have Docker, follow the instructions below.
+
 ### Prerequisites
 
 - Python 3.x
