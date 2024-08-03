@@ -7,7 +7,9 @@ load_dotenv()
 
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
+# Full documentation of function calling here below:
 # https://cookbook.openai.com/examples/how_to_call_functions_with_chat_models
+
 tools = [
     {
     "type": "function",

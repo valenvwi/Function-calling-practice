@@ -1,47 +1,58 @@
-import React from "react";
 import { useState } from "react";
 import "./App.css";
 import Question from "./Question";
 import { Suggestion } from "./types";
 import Result from "./Result";
+import {
+  fetchSuggestions,
+  validateChoices,
+} from "./Question/utils/fetchSuggestions";
 
 function App() {
-  const [suggestion, setSuggestion] = useState<Suggestion>({} as Suggestion);
+  // State for setting value for handle submit
   const [cusine, setCusine] = useState<string>("");
   const [diet, setDiet] = useState<string>("");
   const [spicy, setSpicy] = useState<string>("");
-  const [showResult, setShowResult] = useState<boolean>(false);
+
+  // State for showing error message when the user doesn't select cusine and spicy choice
   const [showErrorMsg, setShowErrorMsg] = useState<boolean>(false);
 
+  // State for handling the content we show to the user
+  const [pageState, setPageState] = useState<
+    "Question" | "Loading" | "Result Success" | "Result Fail"
+  >("Question");
+
+  // State for showing the suggestion/ result
+  const [suggestion, setSuggestion] = useState<Suggestion>({} as Suggestion);
+
   const handleSubmit = async () => {
-    if (!cusine || !spicy) {
-      setShowErrorMsg(true);
-      return;
-    }
+    // Check if the user has selected cusine and spicy choice
+    if (!validateChoices(cusine, spicy, setShowErrorMsg)) return;
 
-    setShowResult(true);
-    setShowErrorMsg(false);
     setSuggestion({} as Suggestion);
-    const request = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cusine, diet, spicy }),
-    };
+    // Go to the result page and show the spinner
+    setPageState("Loading");
 
-    await fetch("http://localhost:8000/messages", request)
-      .then((response) => response.json())
-      .then(async (data) => {
-        setSuggestion({
-          name: data.food_name,
-          recipe: data.food_recipe,
-          preparationTime: data.preparation_time,
-        });
+    try {
+      const data = await fetchSuggestions(cusine, diet, spicy);
+      setSuggestion({
+        name: data.food_name,
+        recipe: data.food_recipe,
+        preparationTime: data.preparation_time,
       });
+
+      // Show the suggestion by gpt
+      setPageState("Result Success");
+    } catch (error) {
+      console.error("Error fetching suggestion:", error);
+      // Show the error message of result
+      setPageState("Result Fail");
+    }
   };
 
   return (
     <>
-      {!showResult ? (
+      {pageState === "Question" ? (
         <Question
           cusine={cusine}
           setCusine={setCusine}
@@ -58,7 +69,8 @@ function App() {
           cusine={cusine}
           diet={diet}
           spicy={spicy}
-          setShowResult={setShowResult}
+          pageState={pageState}
+          setPageState={setPageState}
         />
       )}
     </>

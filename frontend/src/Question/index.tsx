@@ -1,4 +1,3 @@
-import React from "react";
 import { cusineChoice, dietChoice, spicyChoice } from "../constants";
 import { ChoiceButton } from "./ChoiceButton";
 
@@ -63,6 +62,8 @@ export default function Question({
       <button className="submit-button" onClick={handleSubmit}>
         Get the idea now
       </button>
+
+      {/* Show the error message from the validation */}
       {showErrorMsg && (
         <p className="error-text">
           Please choose the cusine and the spicy level
