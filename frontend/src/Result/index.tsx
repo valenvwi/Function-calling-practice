@@ -31,7 +31,7 @@ export default function Result({
         Back
       </button>
 
-      <h3>You have chose:</h3>
+      <h3>You have chosen:</h3>
       <span>{cusine}</span>
       {diet && <span>{diet}</span>}
       <span>{spicy}</span>
