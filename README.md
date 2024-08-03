@@ -3,10 +3,10 @@
 This is a simple app mainly to test out function calling. The user can choose what kind of cuisine they want and other dietary options, and will get a suggestion. The focus of this app is on function calling, and it uses a minimal UI setup.
 
 ## Demo Pictures
-![random1](https://github.com/user-attachments/assets/b23793b9-357e-4a80-8ff0-e56164fa1457)
 
-![random2](https://github.com/user-attachments/assets/ed61bb28-4f7b-470e-a9bf-9a2d7c8a2fd9)
+![random1](https://github.com/user-attachments/assets/a1bee8ae-601c-4f35-af05-cc3541aa97b3)
 
+![random2](https://github.com/user-attachments/assets/e9629391-525f-4fdb-8494-0eec30d0a5c0)
 
 
 ## Tech Stack
